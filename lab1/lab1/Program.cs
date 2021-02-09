@@ -20,7 +20,11 @@ namespace lab1
                 Console.WriteLine("3. Удалить узел по значению");
                 Console.WriteLine("4. Узнать количество елментов списка");
                 Console.WriteLine("5. Поменять местами два соседних елемента");
-
+                Console.WriteLine("6. Дописать и обьеденить 2 списка");
+                Console.WriteLine("7. Очистить список");
+                Console.WriteLine("8. Добавилть елменты с файла");
+                Console.WriteLine("9. Записать текущий список в int.txt");
+                Console.WriteLine("0. Выход");
 
                 menu = Convert.ToInt32(Console.ReadLine());
                 int data;
@@ -49,6 +53,44 @@ namespace lab1
                         id = Convert.ToInt32(Console.ReadLine());
                         list.SwapById(id);
                         break;
+                    case 6:
+                        var temp = new Model.LinkedList<int>();
+                        Console.Write("Введите значения: ");
+                        string str = Console.ReadLine();
+                        string[] elements = str.Split(' ');
+                       foreach(var el in elements)
+                       {
+                           temp.Add(Convert.ToInt32(el));
+                       }
+                        foreach (var e in temp)
+                        {
+                            list.Add(Convert.ToInt32(e));
+                        }
+                        break;
+                    case 7:
+                        list.Clear();
+                        break;
+                    case 8:
+                        string text = System.IO.File.ReadAllText(@"C:\Users\Mi Store\source\repos\algorithms\lab1\lab1\int.txt");
+                        string[] elementsFromFile = text.Split(' ');
+                        foreach (var el in elementsFromFile)
+                        {
+                            if(el != "")
+                                list.Add(Convert.ToInt32(el));
+                        }
+                        
+                        break;
+                    case 9:
+                        string elToFile = "";
+                        foreach(var el in list)
+                        {
+                            elToFile += $"{Convert.ToString(el)} ";
+                        }
+                        //Console.WriteLine(elToFile);
+                        System.IO.File.WriteAllText(@"C:\Users\Mi Store\source\repos\algorithms\lab1\lab1\int.txt", elToFile);
+                        break;
+                    case 0:
+                        return;
                     default:
                         Console.WriteLine("error");
                         break;
