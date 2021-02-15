@@ -100,10 +100,63 @@ namespace lab1
             }
         }
 
+        static void menu2() 
+        {
+            var duplexList = new Model.DuplexLinkedList<int>();
+            duplexList.Add(1);
+            duplexList.Add(2);
+            duplexList.Add(3);
+            duplexList.Add(4);
+
+            foreach(var item in duplexList)
+            {
+                Console.WriteLine(item);
+            }
+            Console.WriteLine("--------------");
+            duplexList.Delete(3);
+            foreach (var item in duplexList)
+            {
+                Console.WriteLine(item);
+            }
+            Console.WriteLine("--------------");
+
+            var reverse = duplexList.Reverse();
+            foreach (var item in reverse)
+            {
+                Console.WriteLine(item);
+            }
+            Console.ReadLine();
+
+        }
+
+        static void menu3()
+        {
+            var circularList = new Model.CircularLinkedList<int>();
+            circularList.Add(1);
+            circularList.Add(2);
+            circularList.Add(3);
+            circularList.Add(4);
+            circularList.Add(5);
+
+            foreach(var item in circularList)
+            {
+                Console.WriteLine(item);
+            }
+
+            circularList.Delete(2);
+            foreach (var item in circularList)
+            {
+                Console.WriteLine(item);
+            }
+
+            Console.ReadLine();
+        }
+
         static void Main(string[] args)
         {
-            menu1();
-            
+            //menu1();
+            //menu2();
+            menu3();
         }
     }
 }
