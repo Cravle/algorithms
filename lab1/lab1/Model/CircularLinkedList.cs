@@ -52,6 +52,52 @@ namespace lab1.Model
                 current = current.Next;
             }
         }
+        public void DeleteByID(int id)
+        {
+            if (id == 0)
+            {
+                RemoveItem(Head);
+                Head = Head.Next;
+                return;
+            }
+
+            var current = Head.Next;
+            for(int i = Count; i>=  0; i--)
+            {
+                if (current != null && i == Count - id + 1)
+                {
+                    RemoveItem(current);
+                    return;
+                }
+                current = current.Next;
+            }
+
+            
+        }
+
+        public void SwapById(int id)
+        {
+            if (Head == null)
+            {
+                Console.WriteLine("Список пуст");
+                return;
+            }
+            var current = Head;
+            int i = 0;
+            while (i < Count - 1)
+            {
+                if (i == id)
+                {
+                    var temp = current.Data;
+                    current.Data = current.Next.Data;
+                    current.Next.Data = temp;
+                    return;
+                }
+                current = current.Next;
+                i++;
+            }
+
+        }
 
         private void RemoveItem(DuplexItem<T> current)
         {
@@ -68,12 +114,30 @@ namespace lab1.Model
             Count = 1;
         }
 
+        public void Print()
+        {
+            Console.WriteLine("--------------------------------------------");
+
+            var current = Head;
+            while (current != null)
+            {
+                Console.Write(current + " ");
+                current = current.Next;
+            }
+            Console.WriteLine();
+        }
+
+        public void Clear()
+        {
+            Head = null;
+            Count = 0;
+        }
         public IEnumerator GetEnumerator()
         {
             var current = Head;
             for(int i = 0; i < Count; i++)
             {
-                yield return current;
+                yield return current.Data;
                 current = current.Next;
             }
         }
