@@ -22,6 +22,19 @@ namespace lab1.Model
 
         }
 
+        public void Print()
+        {
+            Console.WriteLine("--------------------------------------------");
+
+            var current = Head;
+            while (current != null)
+            {
+                Console.Write(current + " ");
+                current = current.Next;
+            }
+            Console.WriteLine();
+        }
+
         public void Add(T data)
         {
             var item = new DuplexItem<T>(data);
@@ -40,12 +53,28 @@ namespace lab1.Model
             Count++;
         }
 
-        public void Delete(T data)
+        public void DeleteByID(int id)
         {
             var current = Head;
+            int i = 0;
             while(current != null)
             {
-                if(current.Data.Equals(data))
+
+                if (id == 0)
+                {
+                    Head = Head.Next;
+                    Count--;
+                    return;
+                }
+                if (id == Count - 1)
+                {
+                    Tail.Previous.Next = null;
+                    Count--;
+                    return;
+                }
+
+
+                if(i == id)
                 {
                     current.Previous.Next = current.Next;
                     current.Next.Previous = current.Previous;
@@ -53,8 +82,36 @@ namespace lab1.Model
                     return;
                 }
 
+
                 current = current.Next;
+                i++;
             }
+        }
+
+        public void SwapById(int id)
+        {
+            var current = Head;
+            int i = 0;
+            while (i < Count - 1)
+            {
+                if (i == id)
+                {
+                    var temp = current.Data;
+                    current.Data = current.Next.Data;
+                    current.Next.Data = temp;
+                    return;
+                }
+                current = current.Next;
+                i++;
+            }
+
+        }
+
+        public void Clear()
+        { 
+            Head = null;
+            Tail = null;
+            Count = 0;
         }
 
         public DuplexLinkedList<T> Reverse()
@@ -77,7 +134,7 @@ namespace lab1.Model
 
             while (current != null)
             {
-                yield return current;
+                yield return current.Data;
                 current = current.Next;
             }
         }
@@ -85,6 +142,8 @@ namespace lab1.Model
         {
             return (IEnumerator<T>)GetEnumerator();
         }
+
+        
     }
 
    
