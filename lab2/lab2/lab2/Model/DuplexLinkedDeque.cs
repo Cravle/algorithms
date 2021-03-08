@@ -8,10 +8,10 @@ using System.Collections;
 
 namespace lab2.Model
 {
-    public class DuplexLinkedDeque<T> : IEnumerable<T>
+    public class DuplexLinkedDeque<T> : IEnumerable<float>
     {
-        private DuplexItem<T> Head;
-        private DuplexItem<T> Tail;
+        private DuplexItem<float> Head;
+        private DuplexItem<float> Tail;
 
         public int Count { get; private set; }
 
@@ -20,20 +20,20 @@ namespace lab2.Model
 
         }
 
-        public DuplexLinkedDeque(T data)
+        public DuplexLinkedDeque(float data)
         {
             SetHeadItem(data);
         }
 
-        private void SetHeadItem(T data)
+        private void SetHeadItem(float data)
         {
-            var item = new DuplexItem<T>(data);
+            var item = new DuplexItem<float>(data);
             Head = item;
             Tail = item;
             Count = 1;
         }
 
-        public void PushBack(T data)
+        public void PushBack(float data)
         {
             if (Count == 0)
             {
@@ -41,13 +41,13 @@ namespace lab2.Model
                 return;
             }
 
-            var item = new DuplexItem<T>(data);
+            var item = new DuplexItem<float>(data);
             item.Next = Tail;
             Tail.Previous = item;
             Tail = item;
             Count++;
         }
-        public void PushFront(T data)
+        public void PushFront(float data)
         {
             if (Count == 0)
             {
@@ -55,14 +55,14 @@ namespace lab2.Model
                 return;
             }
 
-            var item = new DuplexItem<T>(data);
+            var item = new DuplexItem<float>(data);
             item.Previous = Head;
             Head.Next = item;
             Head = item;
             Count++;
         }
 
-        public T PopBack()
+        public float PopBack()
         {
             if(Count > 0)
             {
@@ -75,11 +75,11 @@ namespace lab2.Model
             }
             else
             {
-                return default(T);
+                return default(float);
             }
         }
 
-        public T PopFront()
+        public float PopFront()
         {
             if (Count > 0)
             {
@@ -92,18 +92,64 @@ namespace lab2.Model
             }
             else
             {
-                return default(T);
+                return default(float);
             }
             
         }
 
-        public T PeekBack()
+        public float PeekBack()
         {
             return Tail.Data;
         }
-        public T PeekFront()
+        public float PeekFront()
         {
             return Head.Data;
+        }
+
+        public void ClearDeq()
+        {
+            Tail = null;
+            Count = 0;
+        }
+
+        public float GetSixs()
+        {
+            float sixs = 0;
+
+            DuplexItem<float> current = Head;
+            int counter = 0;
+            while (current != null)
+            {
+                if (counter == 5)
+                {
+                    sixs = current.Data;
+                }
+                current = current.Previous;
+                counter++;
+            }
+            return sixs;
+
+        }
+
+        public void SetThird(float el)
+        {
+            DuplexItem<float> current = Head;
+            int counter = 0;
+            while (current != null)
+            {
+                if (counter == 2)
+                {
+                    current.Data = el;
+                }
+                current = current.Previous;
+                counter++;
+            }
+
+        }
+
+        public void SetTail (float el)
+        {
+            Tail.Data = el;
         }
 
         IEnumerator IEnumerable.GetEnumerator()
@@ -111,9 +157,9 @@ namespace lab2.Model
             return ((IEnumerable)this).GetEnumerator();
         }
 
-        IEnumerator<T> IEnumerable<T>.GetEnumerator()
+        IEnumerator<float> IEnumerable<float>.GetEnumerator()
         {
-            DuplexItem<T> current = Tail;
+            DuplexItem<float> current = Tail;
             while (current != null)
             {
                 yield return current.Data;

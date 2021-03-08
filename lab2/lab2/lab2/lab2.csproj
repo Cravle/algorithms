@@ -49,7 +49,9 @@
     <Compile Include="Model\LinkedQueue.cs" />
     <Compile Include="Model\QueueItem.cs" />
     <Compile Include="Model\Stack.cs" />
+    <Compile Include="OpDeq.cs" />
     <Compile Include="Operation.cs" />
+    <Compile Include="OpQueue.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

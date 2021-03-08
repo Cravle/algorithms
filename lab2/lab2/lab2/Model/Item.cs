@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace lab2.Model
 {
-    public class Item<T>
+    public class Item<T> 
     {
         public T Data { get; set; }
         public Item<T> Previous { get; set; }
@@ -20,5 +20,7 @@ namespace lab2.Model
             return Data.ToString();
         }
 
+
+        
     }
 }

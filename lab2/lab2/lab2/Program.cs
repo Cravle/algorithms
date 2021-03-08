@@ -14,33 +14,44 @@ namespace lab2
         static void Main(string[] args)
         {
             //stack
-            //var funcStack = new OperationStack();
+            var funcStack = new OperationStack();
 
             //funcStack.menu();
 
 
-            var deq = new DuplexLinkedDeque<double>();
-            deq.PushBack(1);
-            deq.PushBack(3);
-            deq.PushBack(2);
-            deq.PushFront(4);
+            //queue
+            var funcQueue = new OpQueue();
 
-            foreach (var el in deq)
+            //
+
+
+            //deque
+            var funcDeque = new OpDeq();
+            while (true)
             {
-                Console.WriteLine(el);
+                Console.WriteLine("1- Стек");
+                Console.WriteLine("2- Очередь");
+                Console.WriteLine("3- Дек");
+                Console.WriteLine("66- Закрыть");
+
+                int menu = Convert.ToInt32(Console.ReadLine());
+                switch (menu)
+                {
+                    case 1:
+                        funcStack.menu();
+                        break;
+                    case 2:
+                        funcQueue.menu();
+                        break;
+                    case 3:
+                        funcDeque.menu();
+                        break;
+
+                    case 66:
+                        return;
+                        break;
+                }
             }
-
-            deq.PopBack();
-            deq.PopFront();
-            Console.WriteLine();
-
-            foreach (var el in deq)
-            {
-                Console.WriteLine(el);
-            }
-
-
-            Console.Read();
         }
     }
 }
