@@ -358,36 +358,42 @@ namespace lab3
             }
         }
 
-        public void Preorder2(RBTreeNode node)
+        public void Preorder2(RBTreeNode node, ref int counter)
         {
             if (node != null)
             {
+                if (node.right == null && node.left == null)
+                    counter++;
                 Console.WriteLine(node);
-                Preorder2(node.left);
-                Preorder2(node.right);
+                Preorder2(node.left,ref counter);
+                Preorder2(node.right,ref counter);
 
             }
         }
 
-        public void Postorder(RBTreeNode node)
+        public void Postorder(RBTreeNode node, ref int counter)
         {
             if (node != null)
             {
-                Postorder(node.left);
-                Postorder(node.right);
+                if (node.right == null && node.left == null)
+                    counter++;
+                Postorder(node.left, ref counter);
+                Postorder(node.right, ref counter);
                 Console.WriteLine(node);
 
 
             }
         }
 
-        public void Symmetric(RBTreeNode node)
+        public void Symmetric(RBTreeNode node, ref int counter)
         {
             if (node != null)
             {
-                Symmetric(node.left);
+                if (node.right == null && node.left == null)
+                    counter++;
+                Symmetric(node.left, ref counter);
                 Console.WriteLine(node);
-                Symmetric(node.right);
+                Symmetric(node.right, ref counter);
 
 
             }

@@ -20,7 +20,7 @@ namespace lab3
             {
                 Print(node.Right, l + 1);
                 for (i = 0; i < l; i++)
-                    Console.Write("       ");
+                    Console.Write("                 ");
                 Console.Write(node);
                  Print(node.Left, l + 1);
                 
@@ -36,7 +36,7 @@ namespace lab3
             {
                 PrintRB(node.right, l + 1);
                 for (i = 0; i < l; i++)
-                    Console.Write("       ");
+                    Console.Write("                 ");
                 Console.Write(node);
                 PrintRB(node.left, l + 1);
 
@@ -47,7 +47,7 @@ namespace lab3
         static void PrintInFileTree(Node<int> node, int l)
         {
             int i;
-            string path = @"C:\Users\Сralve\source\repos\algoritms\lab3\lab3\tree.txt";
+            string path = @"C:\Users\Mi Store\source\repos\algorithms\lab3\lab3\tree.txt";
                 if (node != null)
             {
                 PrintInFileTree(node.Right, l + 1);
@@ -55,7 +55,7 @@ namespace lab3
                     {
                         using (StreamWriter sw = File.AppendText(path))
                         {
-                            sw.Write("       ");                            
+                            sw.Write("                 ");                            
                         }
                     }
                 using (StreamWriter sw = File.AppendText(path))
@@ -139,6 +139,7 @@ namespace lab3
             string name;
             int pasId;
             int age;
+            int counter = 0;
 
 
 
@@ -207,14 +208,20 @@ namespace lab3
                         PrintRB(rbtTree.rootnode, 0);
                         break;
                     case 8:
-                        Console.WriteLine("Количество: " + rbtTree.Count);
-                        rbtTree.Preorder2(rbtTree.rootnode);
+                        counter = 0;
                         Split();
-                        Console.WriteLine("Количество: " + rbtTree.Count);
-                        rbtTree.Postorder(rbtTree.rootnode);
+                        rbtTree.Preorder2(rbtTree.rootnode,ref counter);
+                        Console.WriteLine("Количество: " + counter);
+
                         Split();
-                        Console.WriteLine("Количество: " + rbtTree.Count);
-                        rbtTree.Symmetric(rbtTree.rootnode);
+                        counter = 0;
+                        rbtTree.Postorder(rbtTree.rootnode,ref counter);
+                        Console.WriteLine("Количество: " + counter);
+
+                        Split();
+                        counter = 0;
+                        rbtTree.Symmetric(rbtTree.rootnode, ref counter);
+                        Console.WriteLine("Количество: " + counter);
 
                         break;
                     case 9:
